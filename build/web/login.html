@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <style>
+            body {
+		//display: inline-block;
+		text-align: center;
+                background-color: gray;
+		}
+                h1,h2,label{
+                    color:white;
+                }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to Administration Portal... </h1>
+        <h2 align="center">Login</h2>
+        <form action="viewCourse.jsp"  method="POST">
+            <div class="row" style="padding:.5em;">
+                <b>
+                    <label>Username:</label> <input type="text"  required name="username" size="20"><br /><br />
+                    <label>Password:</label> <input type="password"  required name="password" size="20"><br /><br />
+                    <button type="submit" class="btn btn-primary" name="submit" id="submit" value="Login">Login</button>
+                <a href="" class="btn btn-primary" role="button">Register Account</a>
+                </b>
+            </div>
+        </form>
+    </body>
+</html>
