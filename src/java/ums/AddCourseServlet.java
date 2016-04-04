@@ -106,7 +106,7 @@ public class AddCourseServlet extends HttpServlet {
             Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             connection.setAutoCommit(false);
-            pst = connection.prepareStatement("insert into course(coursenum,title,credit,department,term,section) values(?,?,?,?,?,?)");
+            pst = connection.prepareStatement("insert into courses(coursenum,title,credit,department,term,section) values(?,?,?,?,?,?)");
             for (int i = 0; i < section; i++) {
                 String alphaSections = String.valueOf(alphabets.charAt(i));
                 pst.setString(1, courseNum);

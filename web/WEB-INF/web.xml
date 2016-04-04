@@ -21,12 +21,12 @@
         <url-pattern>/JSP/addCourse</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>GenerateTimetableServlet</servlet-name>
-        <servlet-class>ums.GenerateTimetableServlet</servlet-class>
+        <servlet-name>GenerateTimetable</servlet-name>
+        <servlet-class>ums.GenerateTimetable</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GenerateTimetableServlet</servlet-name>
-        <url-pattern>/generateTimetable</url-pattern>
+        <servlet-name>GenerateTimetable</servlet-name>
+        <url-pattern>/generateTimetable/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

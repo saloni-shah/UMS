@@ -33,7 +33,7 @@
         <h1 align="center">Course List</h1>
         <h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
-            <a href="/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
+            <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
         </h3>
         <div class="container">
             <table class="table">
@@ -62,6 +62,10 @@
                         <th>
                             <label for="term">Term</label>
                         </th>
+                        
+                        <th>
+                            <label for="term">Location</label>
+                        </th>
                     </tr>
                 </thead>
 
@@ -78,10 +82,11 @@
                             Connection conn = DriverManager.getConnection(DB_URL, username, password);
                             //System.out.println("Database connected..");
                             Statement stmt = conn.createStatement();
-                            String queryString = "select course.*, courseschedule.* "
-                                    + "from course, courseschedule "
-                                    + "where course.courseNum = courseschedule.courseNum "
-                                    + " order by course.courseNum desc";
+                            String queryString = "select courses.*, courseschedule.* "
+                                    + "from courses, courseschedule "
+                                    + "where courses.courseNum = courseschedule.courseNum "
+                                    + " and courses.section = courseschedule.section "
+                                    + " order by courses.title desc";
                             ResultSet rset = stmt.executeQuery(queryString);
                             while (rset.next()) {
 
@@ -93,6 +98,7 @@
                         <th><%=rset.getString("day") %></th>
                         <th><%=rset.getString("time") %></th>
                         <th><%=rset.getString("term") %></th>
+                        <th><%=rset.getString("location") %></th>
                     </tr>
                     <%
 
