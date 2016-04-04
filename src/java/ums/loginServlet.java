@@ -6,13 +6,13 @@ package ums;
  * and open the template in the editor.
  */
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -38,10 +38,10 @@ public class loginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        static final String DB_URL = "jdbc:mysql://localhost/ums";
-        static final String USER = "root";
-        static final String PASS = "root";
+        static final String JDBC_DRIVER = "oracle.jdbc.OracleDriver";
+        static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        static final String USER = "hr";
+        static final String PASS = "hr";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -93,10 +93,11 @@ public class loginServlet extends HttpServlet {
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             String status;
-            Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(JDBC_DRIVER);
             conn = (Connection) DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Database..");
-            stmt = (Statement) conn.createStatement();
+            stmt = conn.createStatement();
             //String sql = "SELECT id, userId, password FROM login";
             //ResultSet rs = stmt.executeQuery(sql);
             String queryString = "select * "
@@ -106,22 +107,31 @@ public class loginServlet extends HttpServlet {
             ResultSet rset = stmt.executeQuery(queryString);
            
             if (rset.next()) {
-                String uname = rset.getString(1);
-                if(uname!=null){
-                    status = "Login was successful"; 
-                    out.println("<b>"+status+"</b><br>"); 
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
-                    dispatcher.forward(request, response);
+                String userType = rset.getString("type");
+                if(userType!=null){
+                    request.setAttribute("Message", "Your Login was Successful..");
+                    if(userType.equals("admin")){
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
+                        dispatcher.forward(request, response);
+                    }if(userType.equals("faculty")){
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
+                        dispatcher.forward(request, response);
+                    }if(userType.equals("student")){
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                    //status = "Login was successful"; 
+                    //out.println("<b>"+status+"</b><br>"); 
+                  
                     //out.println("<b>"+status+"</b><br>"); 
                 }
             }else{
                 status = "Invalid Username and password...Please try again.."; 
-                
                 out.println("<h3>"+status+"</h3><br>");
-                //request.getRequestDispatcher("/login.html").include(request, response);
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/HTML/login.html");
-                    dispatcher.forward(request, response);
-                //out.println("<b>"+status+"</b><br>"); 
+                //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/HTML/login.html");
+                 //   dispatcher.forward(request, response);
+                String referer = request.getHeader("Referer");
+                response.sendRedirect(referer);
             }
             
             

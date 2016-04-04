@@ -5,11 +5,9 @@ package ums;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,10 +29,10 @@ import ums.loginServlet;
 @WebServlet(urlPatterns = {"/AddCourseServlet"})
 public class AddCourseServlet extends HttpServlet {
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/ums";
-    static final String USER = "root";
-    static final String PASS = "root";
+    static final String JDBC_DRIVER = "oracle.jdbc.OracleDriver";
+    static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    static final String USER = "hr";
+    static final String PASS = "hr";
     private Object connection;
 
     /**
@@ -92,76 +90,62 @@ public class AddCourseServlet extends HttpServlet {
         //processRequest(request, response);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        Connection connection;
+        Connection connection = null;
         PreparedStatement pst;
-        //Statement stmt = null;
-        //response.setContentType("text/html;charset=UTF-8");
         try {
             String courseNum = request.getParameter("coursenumber");
-            String section = request.getParameter("section");
+            int section = Integer.parseInt(request.getParameter("section"));
+            String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
             String title = request.getParameter("title");
-            String credit = request.getParameter("credit");
+            int credit = Integer.parseInt(request.getParameter("credit"));
             String department = request.getParameter("department");
             String term = request.getParameter("term");
-            String day = request.getParameter("day");
-            String time = request.getParameter("time");
+            String lab = request.getParameter("lab");
             String status;
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = (Connection) DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("Database connected");
-
-            String queryString = "select * "
-                    + "from course "
-                    + "where course.courseNum = ? ";
-            pst = connection.prepareStatement(queryString);
-            pst.setString(1, courseNum);
-            ResultSet rset = pst.executeQuery();
-            if (rset.next()) {
-                pst = connection.prepareStatement("insert into courseschedule(courseNum,section,day,time,term) values(?,?,?,?,?)");
+            Class.forName(JDBC_DRIVER);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection.setAutoCommit(false);
+            pst = connection.prepareStatement("insert into course(coursenum,title,credit,department,term,section) values(?,?,?,?,?,?)");
+            for (int i = 0; i < section; i++) {
+                String alphaSections = String.valueOf(alphabets.charAt(i));
                 pst.setString(1, courseNum);
-                pst.setString(2, section);
-                pst.setString(3, day);
-                pst.setString(4, time);
-                pst.setString(5, term);
-                int i = pst.executeUpdate();
-                if (i != 0) {
-                    out.println("<br>Record has been inserted");
-                } else {
-                    out.println("failed to insert the data");
-                }
-            } else {
-                pst = connection.prepareStatement("insert into course(courseNum,title,credit,department) values(?,?,?,?)");
-                pst.setString(1, courseNum);
-               // pst.setString(2, section);
+                // pst.setString(2, section);
                 pst.setString(2, title);
-                pst.setString(3, credit);
+                pst.setInt(3, credit);
                 pst.setString(4, department);
-                pst.executeUpdate();
-
-                pst = connection.prepareStatement("insert into courseschedule(courseNum,section,day,time,term) values(?,?,?,?,?)");
-                pst.setString(1, courseNum);
-                pst.setString(2, section);
-                pst.setString(3, day);
-                pst.setString(4, time);
                 pst.setString(5, term);
-                int i = pst.executeUpdate();
-
-                if (i != 0) {
-                    out.println("<br>Record has been inserted");
-                } else {
-                    out.println("failed to insert the data");
-                }
-
+                pst.setString(6, alphaSections);
+                pst.executeUpdate();
             }
+            if ("Yes".equals(lab)) {
+                int labCredit = Integer.parseInt(request.getParameter("labcredit"));
+                for (int i = 0; i < section; i++) {
+                    String alphaSections = String.valueOf(alphabets.charAt(i));
+                    pst.setString(1, courseNum + "L");
+                    pst.setString(2, title + " Lab");
+                    pst.setInt(3, labCredit);
+                    pst.setString(4, department);
+                    pst.setString(5, term);
+                    pst.setString(6, alphaSections);
+                    pst.executeUpdate();
+                }
+            }
+            connection.commit();
             status = "Course added successfully...";
             out.println("<b>" + status + "</b><br>");
+            request.setAttribute("Message", "Course added successfully...");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
             dispatcher.forward(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(loginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(loginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (ClassNotFoundException | SQLException | NullPointerException ex) {
+            Logger.getLogger(AddCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddCourseServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
     }
 
     /**

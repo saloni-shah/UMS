@@ -20,6 +20,14 @@
         <servlet-name>AddCourseServlet</servlet-name>
         <url-pattern>/JSP/addCourse</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GenerateTimetableServlet</servlet-name>
+        <servlet-class>ums.GenerateTimetableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenerateTimetableServlet</servlet-name>
+        <url-pattern>/generateTimetable</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

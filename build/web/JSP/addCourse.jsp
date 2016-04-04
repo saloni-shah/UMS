@@ -29,27 +29,6 @@
         <div class="container">
         <form action="addCourse"  class="form-inline" role="form" method="POST">
             <div class="row" style="padding:.5em;">
-                
-                    <div class="form-group">
-                        <label>Course Number:</label> 
-                        <input type="text"  required name="coursenumber"><br /><br />
-                    </div>
-                    <div class="form-group">
-                        <label>Section:</label> 
-                        <input type="text"  required name="section"><br /><br />
-                    </div>
-            </div>
-             <div class="row" style="padding:.5em;">
-                    <div class="form-group">
-                        <label>Course Title:</label> 
-                        <input type="text"  required name="title"><br /><br />
-                    </div>    
-                    <div class="form-group">
-                        <label>Credits:</label> 
-                        <input type="number"  required name="credit" min="1" max="3"><br /><br />
-                    </div>
-                 </div>
-             <div class="row" style="padding:.5em;">
                     <div class="form-group">
                         <label>Department:</label> 
                         <input type="text"  required name="department"><br /><br />
@@ -59,7 +38,42 @@
                         <input type="text"  required name="term"><br /><br />
                     </div>
              </div>
+            <div class="row" style="padding:.5em;">
+                
+                    <div class="form-group">
+                        <label>Course Number:</label> 
+                        <input type="text"  required name="coursenumber"><br /><br />
+                    </div>
+                    <div class="form-group">
+                        <label>Course Title:</label> 
+                        <input type="text"  required name="title"><br /><br />
+                    </div> 
+                    
+            </div>
              <div class="row" style="padding:.5em;">
+                    <div class="form-group">
+                        <label>Number of Sections:</label> 
+                        <input type="number"  required name="section"><br /><br />
+                    </div>   
+                    <div class="form-group">
+                        <label>Credits:</label> 
+                        <input type="number"  required name="credit" min="1" max="4"><br /><br />
+                    </div>
+            </div>
+             <div class="row" style="padding:.5em;">
+                     <div class="form-group">
+                        <div class="checkbox">
+                         <label>Lab</label>
+                         <input type="checkbox" name="lab" value="Yes">Yes
+                             <br /><br />
+                        </div>
+                     </div>
+                    <div class="form-group">
+                        <label>Lab Credits:</label> 
+                        <input type="number" name="labcredit" min="1" max="2"><br /><br />
+                    </div>
+            </div>
+             <!--<div class="row" style="padding:.5em;">
                     <div class="form-group">
                         <label>Day:</label> 
                         <select name="day">
@@ -83,7 +97,7 @@
                             <option value="6:15 PM">6:15 PM</option>
                         </select><br /><br />
                     </div>
-                 </div>
+                 </div>-->
              <div class="row" style="padding:.5em;">
                     <button type="submit" class="btn btn-primary" name="submit" id="submit" value="Save">Save</button>
                 

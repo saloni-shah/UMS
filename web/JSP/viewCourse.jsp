@@ -6,7 +6,7 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
-<%@page import="com.mysql.jdbc.Statement"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,9 +29,11 @@
         <title>Course List</title>
     </head>
     <body>
+        <div align="left" style="color: white;">${Message}</div>
         <h1 align="center">Course List</h1>
         <h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
+            <a href="/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
         </h3>
         <div class="container">
             <table class="table">
@@ -68,13 +70,14 @@
                     <%
 
                         try {
-                            String DB_URL = "jdbc:mysql://localhost/ums";
-                            String username = "root";
-                            String password = "root";
-                            Class.forName("com.mysql.jdbc.Driver");
+                            String JDBC_DRIVER = "oracle.jdbc.OracleDriver";
+                            String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+                            String username = "hr";
+                            String password = "hr";
+                            Class.forName(JDBC_DRIVER);
                             Connection conn = DriverManager.getConnection(DB_URL, username, password);
                             //System.out.println("Database connected..");
-                            java.sql.Statement stmt = conn.createStatement();
+                            Statement stmt = conn.createStatement();
                             String queryString = "select course.*, courseschedule.* "
                                     + "from course, courseschedule "
                                     + "where course.courseNum = courseschedule.courseNum "
