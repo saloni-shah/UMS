@@ -26,15 +26,15 @@
                 color:white;
             }
         </style>
-        <title>Course List</title>
+        <title>Timetable(Course List)</title>
     </head>
     <body>
-        <div align="left" style="color: white;">${Message}</div>
-        <h1 align="center">Course List</h1>
-        <h3 align="left">
+        <!--<div align="left" style="color: white;">${Message}</div>-->
+        <h1 align="center">Timetable(Course List)</h1>
+        <!--<h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
             <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
-        </h3>
+        </h3>-->
         <div class="container">
             <table class="table">
                 <thead>

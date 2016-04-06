@@ -111,7 +111,7 @@ public class loginServlet extends HttpServlet {
                 if(userType!=null){
                     request.setAttribute("Message", "Your Login was Successful..");
                     if(userType.equals("admin")){
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/adminHome.jsp");
                         dispatcher.forward(request, response);
                     }if(userType.equals("faculty")){
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
