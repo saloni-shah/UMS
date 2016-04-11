@@ -28,9 +28,14 @@
         <title>Edit/Remove Course</title>
     </head>
     <body>
-         <div align="left" style="color: white;">${Message}</div>
+         <div align="left" style="color: white;">${Message}
+         </div>
+         <div>
          <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
-       <h1 align="center">Edit/Remove Course</h1>
+         <a href="/UMS/JSP/tuition.jsp" class="btn btn-primary" role="button">Tuition & Costs</a>
+         <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
+         </div>
+         <h1 align="center">Edit/Remove Course</h1>
         <!--<h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
             <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>

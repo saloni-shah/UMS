@@ -55,7 +55,7 @@
             <div class="row" style="padding:.5em;">
                     <div class="form-group">
                         <label>Department:</label> 
-                        <input type="text"  readonly required name="department" value="<%=rset.getString("department")%>"><br /><br />
+                        <input type="text"  style="background-color: yellowgreen" readonly required name="department" value="<%=rset.getString("department")%>"><br /><br />
                     </div>
                     <div class="form-group">
                         <label>Term:</label> 
@@ -66,7 +66,7 @@
                 
                     <div class="form-group">
                         <label>Course Number:</label> 
-                        <input type="text"  readonly required name="coursenumber" value="<%=rset.getString("courseNum")%>"><br /><br />
+                        <input type="text"  style="background-color: yellowgreen" readonly required name="coursenumber" value="<%=rset.getString("courseNum")%>"><br /><br />
                     </div>
                     <div class="form-group">
                         <label>Course Title:</label> 
@@ -77,7 +77,7 @@
              <div class="row" style="padding:.5em;">
                     <div class="form-group">
                         <label>Section:</label> 
-                        <input type="text"  readonly required name="section" value="<%=rset.getString("section")%>"><br /><br />
+                        <input type="text"  style="background-color: yellowgreen" readonly required name="section" value="<%=rset.getString("section")%>"><br /><br />
                     </div>   
                     <div class="form-group">
                         <label>Credits:</label> 
