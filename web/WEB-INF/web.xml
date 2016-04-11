@@ -20,6 +20,22 @@
         <servlet-name>AddCourseServlet</servlet-name>
         <url-pattern>/JSP/addCourse</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <servlet-name>UpdateCourse</servlet-name>
+        <servlet-class>ums.UpdateCourse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCourse</servlet-name>
+        <url-pattern>/JSP/updateCourse</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteCourseServlet</servlet-name>
+        <servlet-class>ums.DeleteCourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCourseServlet</servlet-name>
+        <url-pattern>/deleteCourse/*</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>GenerateTimetable</servlet-name>
         <servlet-class>ums.GenerateTimetable</servlet-class>

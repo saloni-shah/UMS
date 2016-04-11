@@ -21,6 +21,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import static ums.AddCourseServlet.DB_URL;
 import static ums.AddCourseServlet.JDBC_DRIVER;
 
@@ -85,64 +89,80 @@ public class GenerateTimetable extends HttpServlet {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Driver loaded");
             stmt = connection.createStatement();
+            int totalRooms = 3;
             int room = 1;
-            double time = 9.15;
-            int dayCount = 0;
-            String days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+           // double time = 9.15;
+           // int dayCount = 0;
+            //String days[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
             String deletequeryString = "delete from courseschedule";
             ResultSet rset1 = stmt.executeQuery(deletequeryString);
             queryString = "select * from courses order by section asc";
             ResultSet rset = stmt.executeQuery(queryString);
             //rset.getMetaData().get
-            int count = 0;
+            DateTime startTime = new DateTime();
+            startTime = startTime.dayOfWeek().setCopy(DateTimeConstants.MONDAY);
+            startTime = startTime.hourOfDay().setCopy("9");
+            startTime = startTime.minuteOfHour().setCopy("15");
+            startTime = startTime.secondOfMinute().setCopy("0");
+
+            DateTime endTime = new DateTime();
+            endTime = endTime.dayOfWeek().setCopy(DateTimeConstants.MONDAY);
+            endTime = endTime.hourOfDay().setCopy("21");
+            endTime = endTime.minuteOfHour().setCopy("15");
+            endTime = endTime.secondOfMinute().setCopy("0");
+
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("h:mm a");
             PreparedStatement pst = connection.prepareStatement("insert into courseschedule(coursenum,section,day,time,location) values(?,?,?,?,?)");
             while (rset.next()) {
                 int credit = rset.getInt("credit");
                 String courseNum = rset.getString("coursenum");
                 String section = rset.getString("section");
-                if (room < 3) {
-                    if (time + credit > 21.15) {
+
+                if (room < totalRooms) {
+
+                    if (startTime.hourOfDay().addToCopy(credit).isAfter(endTime)) {
                         room++;
-                        if(room==3){
+                        if (room == totalRooms) {
                             room = 1;
-                            dayCount++;
-                            if(dayCount==7){
-                                dayCount = 0;
-                            }
+                            startTime = startTime.dayOfWeek().addToCopy(1);
+                            endTime = endTime.dayOfWeek().addToCopy(1);
                         }
-                        time = 9.15;
-                    }/*else{
-                     time = time+credit;
-                     }*/
-
-                } /*else {
-                    room = 1; 
-                    if(dayCount<7){
-                        dayCount++;
-                    }else{
-                        dayCount = 0;
+                        startTime = startTime.hourOfDay().setCopy("9");
+                        startTime = startTime.minuteOfHour().setCopy("15");
+                        startTime = startTime.secondOfMinute().setCopy("0");
                     }
-                    
-                }*/
-                String location = "Room" + room;
-                
-                String Time;
-                if(time<12.15){
-                   Time = time + " AM";
-                }else{
-                   Time = time + " PM";
                 }
+                String location = "Room" + room;
+                /* if (room < totalRooms) {
+                 if (time + credit > 21.15) {
+                 room++;
+                 if(room==totalRooms){
+                 room = 1;
+                 dayCount++;
+                 if(dayCount==7){
+                 dayCount = 0;
+                 }
+                 }
+                 time = 9.15;
+                 }
+                 }
+                 String location = "Room" + room;
                 
+                 String Time;
+                 if(time<12.15){
+                 Time = time + " AM";
+                 }else{
+                 Time = time + " PM";
+                 } */
                 //stmt.executeUpdate("insert into courseschedule(coursenum,section,day,time,location) values('"+courseNum+"','"+section+"','"+days[dayCount]+"','"+time+"','"+location+"')");
-
                 pst.setString(1, courseNum);
                 pst.setString(2, section);
-                pst.setString(3, days[dayCount]);
-                pst.setString(4, Time);
+                pst.setString(3, startTime.dayOfWeek().getAsText());
+                pst.setString(4, startTime.toString(fmt));
                 pst.setString(5, location);
                 pst.executeUpdate();
-                time = time + credit;
-                count++;
+                startTime = startTime.hourOfDay().addToCopy(credit);
+                //time = time + credit;
             }
             out.println("Inserted Successfully");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
@@ -184,4 +204,31 @@ public class GenerateTimetable extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public static void main(String[] a) {
+        DateTime startTime = new DateTime();
+        startTime = startTime.dayOfWeek().setCopy(DateTimeConstants.MONDAY);
+        startTime = startTime.hourOfDay().setCopy("9");
+        startTime = startTime.minuteOfHour().setCopy("15");
+        startTime = startTime.secondOfMinute().setCopy("0");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE h:mm a");
+        System.out.println(startTime.toString(fmt));
+
+        startTime = startTime.dayOfWeek().addToCopy(1);
+
+        System.out.println(startTime.toString(fmt));
+
+        DateTime endTime = new DateTime();
+        endTime = endTime.dayOfWeek().setCopy(DateTimeConstants.MONDAY);
+        endTime = endTime.hourOfDay().setCopy("21");
+        endTime = endTime.minuteOfHour().setCopy("15");
+        endTime = endTime.secondOfMinute().setCopy("0");
+
+        startTime.plusHours(3);
+
+        if (startTime.equals(endTime)) {
+
+        }
+
+        System.out.println(startTime);
+    }
 }

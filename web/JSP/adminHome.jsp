@@ -76,7 +76,7 @@
                  </p>
             </a>  
         
-           <a href="" id="faculty" class="img-responsive" style="display:inline-block;border:1px solid #b91d47;">
+           <a href="/UMS/JSP/editRemove.jsp" id="faculty" class="img-responsive" style="display:inline-block;border:1px solid #b91d47;">
                  <img src="/UMS/images/delete.jpg" alt="faculty" class="img-responsive" width="250" height="190">
                  <p class="text" style="font-size: large; text-align: center;">
                        Edit/Remove Course
@@ -84,7 +84,7 @@
             </a>  
         </div>
         <div class="container" style="align:center;">
-           <a href="" class="img-responsive" style="display:inline-block;border:1px solid #b91d47;">
+           <a href="/UMS/JSP/tuition.jsp" class="img-responsive" style="display:inline-block;border:1px solid #b91d47;">
                  <img src="/UMS/images/tuition.png" alt="student" class="img-responsive" width="250" height="190">
                  <p class="text" style="font-size: large; text-align: center;">
                        Tuition & Costs

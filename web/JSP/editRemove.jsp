@@ -1,9 +1,8 @@
 <%-- 
-    Document   : viewCourse
-    Created on : Mar 22, 2016, 2:28:20 PM
+    Document   : editRemove
+    Created on : Apr 10, 2016, 10:05:36 PM
     Author     : Saloni
 --%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
@@ -26,11 +25,12 @@
                 color:white;
             }
         </style>
-        <title>Timetable(Course List)</title>
+        <title>Edit/Remove Course</title>
     </head>
     <body>
-        <!--<div align="left" style="color: white;">${Message}</div>-->
-        <h1 align="center">Timetable(Course List)</h1>
+         <div align="left" style="color: white;">${Message}</div>
+         <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
+       <h1 align="center">Edit/Remove Course</h1>
         <!--<h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
             <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
@@ -42,6 +42,10 @@
                         <th>
                             <label for="coursenumber">Course  Number</label>
                         </th>
+                        
+                        <th>
+                            <label for="section">Section</label>
+                        </th>
 
                         <th>
                             <label for="coursetitle">Course Title</label>
@@ -51,20 +55,14 @@
                             <label for="department">Department</label>
                         </th>
                         
-                        <th>
-                            <label for="day">Day</label>
-                        </th>
                         
-                        <th>
-                            <label for="time">Time</label>
-                        </th>
 
                         <th>
                             <label for="term">Term</label>
                         </th>
                         
                         <th>
-                            <label for="term">Location</label>
+                            <label for="credit">Credits</label>
                         </th>
                     </tr>
                 </thead>
@@ -82,23 +80,22 @@
                             Connection conn = DriverManager.getConnection(DB_URL, username, password);
                             //System.out.println("Database connected..");
                             Statement stmt = conn.createStatement();
-                            String queryString = "select courses.*, courseschedule.* "
-                                    + "from courses, courseschedule "
-                                    + "where courses.courseNum = courseschedule.courseNum "
-                                    + " and courses.section = courseschedule.section "
-                                    + " order by courseschedule.day, courseschedule.time, courseschedule.location";
+                            String queryString = "select courses.* "
+                                    + "from courses "
+                                    + " order by courses.title desc";
                             ResultSet rset = stmt.executeQuery(queryString);
                             while (rset.next()) {
 
                     %>
                     <tr>
-                        <th><%=rset.getString("courseNum")%><%=rset.getString("section") %></th>
-                        <th><%=rset.getString("title") %>(<%=rset.getInt("credit") %> Credits)</th>
+                        <th><%=rset.getString("courseNum")%></th>
+                        <th><%=rset.getString("section") %></th>
+                        <th><%=rset.getString("title") %></th>
                         <th><%=rset.getString("department") %></th>
-                        <th><%=rset.getString("day") %></th>
-                        <th><%=rset.getString("time") %></th>
                         <th><%=rset.getString("term") %></th>
-                        <th><%=rset.getString("location") %></th>
+                        <th>(<%=rset.getInt("credit") %> Credits)</th>
+                        <th><a href="/UMS/JSP/editForm.jsp?id=<%=rset.getString("courseNum")%>&section=<%=rset.getString("section")%>" class="btn btn-primary" role="button">Edit</a></th>
+                        <th><a href="${pageContext.request.contextPath}/deleteCourse?id=<%=rset.getString("courseNum")%>&section=<%=rset.getString("section")%>" class="btn btn-primary" role="button">Remove</a></th>
                     </tr>
                     <%
 

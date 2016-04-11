@@ -86,7 +86,7 @@
                                     + "from courses, courseschedule "
                                     + "where courses.courseNum = courseschedule.courseNum "
                                     + " and courses.section = courseschedule.section "
-                                    + " order by courses.title desc";
+                                    + " order by courseschedule.day, courseschedule.time, courseschedule.location";
                             ResultSet rset = stmt.executeQuery(queryString);
                             while (rset.next()) {
 
