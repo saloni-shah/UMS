@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -105,9 +106,19 @@ public class AddCourseServlet extends HttpServlet {
             String status;
             Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            //
+            int chNumber = 0;
+            Statement stmt = connection.createStatement();
+            String queryString = "select max(section) as section from courses where courseNum =\'" + courseNum + "\'";
+            ResultSet rset = stmt.executeQuery(queryString);
+            if(rset.next()){
+                 String maxSection = rset.getString("section");
+                 chNumber = maxSection==null ? 0 : alphabets.indexOf(maxSection)+1;
+            }
+            //
             connection.setAutoCommit(false);
             pst = connection.prepareStatement("insert into courses(coursenum,title,credit,department,term,section) values(?,?,?,?,?,?)");
-            for (int i = 0; i < section; i++) {
+            for (int i = chNumber; i < section+chNumber; i++) {
                 String alphaSections = String.valueOf(alphabets.charAt(i));
                 pst.setString(1, courseNum);
                 // pst.setString(2, section);
@@ -120,7 +131,7 @@ public class AddCourseServlet extends HttpServlet {
             }
             if ("Yes".equals(lab)) {
                 int labCredit = Integer.parseInt(request.getParameter("labcredit"));
-                for (int i = 0; i < section; i++) {
+                for (int i = chNumber; i < section+chNumber; i++) {
                     String alphaSections = String.valueOf(alphabets.charAt(i));
                     pst.setString(1, courseNum + "L");
                     pst.setString(2, title + " Lab");
@@ -135,7 +146,7 @@ public class AddCourseServlet extends HttpServlet {
             status = "Course added successfully...";
             out.println("<b>" + status + "</b><br>");
             request.setAttribute("Message", "Course added successfully...");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/viewCourse.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/JSP/editRemove.jsp");
             dispatcher.forward(request, response);
         } catch (ClassNotFoundException | SQLException | NullPointerException ex) {
             Logger.getLogger(AddCourseServlet.class.getName()).log(Level.SEVERE, null, ex);

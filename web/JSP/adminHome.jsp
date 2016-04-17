@@ -65,7 +65,7 @@
        <div align="left" style="color: white;">${Message}</div>
         <div style="color: white;" align="left">Welcome Admin.</div>
         <div align="right">
-        <a href="" class="btn btn-primary" role="button">LogOut</a>
+        <a href="/UMS/HTML/login.html" class="btn btn-primary" role="button">LogOut</a>
         </div>
         <h2 align="center">UMS</h2>
         <div class="container" style="align:center;margin-top: 20px;">

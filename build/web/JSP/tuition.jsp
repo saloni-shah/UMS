@@ -25,6 +25,15 @@
         <title>Tuition & Costs</title>
     </head>
     <body>
+        <div align="left">
+             <br />
+         <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
+         <a href="/UMS/JSP/editRemove.jsp" class="btn btn-primary" role="button">Edit/Remove Course</a>
+         <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
+         </div>
+           <div align="right">
+        <a href="/UMS/HTML/login.html" class="btn btn-primary" role="button">LogOut</a>
+        </div>
         <h1>Tuition</h1>
         <div class="row" style="padding:.5em;">
         <label>The following tuition is per semester. Textbooks, school supplies, housing, food, insurance, and other personal expenses are not included in these costs. 

@@ -25,6 +25,15 @@
         <title>Add Course</title>
     </head>
     <body>
+        <div align="left">
+            <br />
+         <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
+         <a href="/UMS/JSP/tuition.jsp" class="btn btn-primary" role="button">Tuition & Costs</a>
+         <a href="/UMS/JSP/editRemove.jsp" class="btn btn-primary" role="button">Edit/Remove Course</a>
+         </div>
+         <div align="right">
+        <a href="/UMS/HTML/login.html" class="btn btn-primary" role="button">LogOut</a>
+        </div>
         <h1>Add Course</h1>
         <div class="container">
         <form action="addCourse"  class="form-inline" role="form" method="POST">

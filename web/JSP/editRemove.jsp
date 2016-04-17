@@ -30,11 +30,15 @@
     <body>
          <div align="left" style="color: white;">${Message}
          </div>
-         <div>
+         <div align="left">
+              <br />
          <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
          <a href="/UMS/JSP/tuition.jsp" class="btn btn-primary" role="button">Tuition & Costs</a>
          <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
          </div>
+           <div align="right">
+        <a href="/UMS/HTML/login.html" class="btn btn-primary" role="button">LogOut</a>
+        </div>
          <h1 align="center">Edit/Remove Course</h1>
         <!--<h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
