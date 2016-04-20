@@ -44,10 +44,57 @@
         <servlet-name>GenerateTimetable</servlet-name>
         <url-pattern>/generateTimetable/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>ums.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>ums.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentRegistration</servlet-name>
+        <servlet-class>ums.StudentRegistration</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>ums.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/DownloadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentRegistration</servlet-name>
+        <url-pattern>/StudentRegistration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     
+    <context-param>
+        <description>Location from get downloaded file</description>
+        <param-name>file-download</param-name>
+        <param-value>
+         C:\Users\Saloni\Desktop\data1\CS532D_2016_SP_Midterm.pdf
+     </param-value>
+    </context-param>    
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+        C:\Users\Saloni\Desktop\data
+     </param-value>
+    </context-param>
 </web-app>

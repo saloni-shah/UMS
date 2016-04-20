@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html style="background-color: gray">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        
+	body {
+		display:inline;
+                width: 100%;
+                align-content: stretch; height: 100%;
+                background-attachment: fixed;
+                align-content: center;
+                margin-left: 2cm;
+	}
+        form{	
+		height: 100%;
+		width: 100%;
+                display: 100%;
+                    div#full {
+                        height: 100vh;
+                        form { display: inline; }
+                        font-size: 25em;
+                        margin-left: 2cm;
+                    }
+                align-content: stretch;                        
+                background-color:gray;
+                font-family: Georgia;            
+                color: white;       
+        }
+        label {
+                width: 20em;
+                height: 20em;
+                color: white;
+                background-color:blue;
+                color: blue;
+        }
+	input{
+		width: 10em;
+                font-family: Georgia;         
+                alignment-adjust: central;
+                color: blue;
+        }
+        div{
+                background-color: blue;
+                content: editable;
+        }
+        a{
+                font-family: Georgia;
+                background: white;
+                color: blue;
+        }
+        table{
+                width: 30em;
+                height: 30em;
+                padding-left: 15em;
+                margin-left: 2cm;
+        }
+        textarea{
+                font-family: Georgia;
+                background-color: WHITE;
+                text-decoration: #3333ff;
+                color: blue;
+        }
+        select{
+                font-family: Georgia;
+                background: WHITE;
+                color: blue;
+        }
+        h2{
+                margin-left: 2cm;
+        }
+        p{
+                margin-left: 2cm; 
+        }
+        
+      </style>
+    </head>
+    <body>
+        <center> 
+            <h2>Registration </h2>
+            <hr>
+            <form action="/UMS/StudentRegistration" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            Student ID
+                        <td>
+                        <input type=text name=student_id size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Firstname
+                        <td>
+                            <input type=text name=firstName size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lastname
+                        <td>
+                            <input type=text name=lastName size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date of Birth
+                        <td>
+                            <input type=text name=dob size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contact Number
+                        <td>
+                            <input type=text name=phone size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        <td>
+                            <input type=text name=email size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            User Name
+                        <td>
+                            <input type=text name=userName size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password
+                        <td>
+                            <input type=password name=pwd size=30>
+                    </tr>
+                    <tr>
+                        <td>
+                            Conform Password
+                        <td>
+                            <input type=password name=pwd size=30>
+                    </tr>
+                    <tr contenteditable="true">
+                        <td>
+                            Address
+                        <td>
+                            <textarea  name=address rows=5 cols=30></textarea>
+                    </tr>
+                    <tr>
+                        <td>
+                            Category
+                        <td>
+                            <select name="type">
+                                <option value=None>None
+                                <option value=Student>Student 
+                            </select>
+                    </tr>
+                    <tr>
+                        <td>
+                            Course
+                        <td>
+                            <select name="course">
+                                <option value=MSCS>MS Computer Science
+                                <option value=MSCSE>MS Computer Systems Engineering
+                                <option value=MSEE>MS Electrical Engineering
+                                <option value=BSCS>BS Computer Science
+                                <option value=BSCSE>BS Computer Systems Engineering
+                                <option value=BSEE>BS Electrical Engineering                  
+                            </select>
+                    </tr>
+
+            </table>
+        <p>
+            <input type=submit value="Register">
+            <input type=reset value="Clear All">
+        <p>
+        <a href="/UMS/HTML/student_login.html">Go Back</a>
+      </form>
+        
+    </center>
+   </body>
+</html>
+

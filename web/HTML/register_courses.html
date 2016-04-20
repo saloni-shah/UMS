@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html style="background-color: gray">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        
+	body {
+		display:inline;
+                width: 100%;
+                align-content: stretch; height: 100%;
+                background-attachment: fixed;
+                align-content: center;
+                margin-left: 2cm;
+	}
+        form{	
+		height: 100%;
+		width: 100%;
+                display: 100%;
+                    div#full {
+                        height: 100vh;
+                        form { display: inline; }
+                        font-size: 25em;
+                        margin-left: 2cm;
+                    }
+                align-content: stretch;                        
+                background-color:gray;
+                font-family: Georgia;            
+                color: white;   
+       }
+        label {
+                width: 20em;
+                height: 20em;
+                color: white;
+                background-color:blue;
+                color: blue;
+        }
+	input{
+		width: 10em;
+                font-family: Georgia;         
+                alignment-adjust: central;
+                color: blue;
+        }
+        div{
+                background-color: blue;
+                content: editable;
+        }
+        a{
+                font-family: Georgia;
+                background: gray;
+                color: blue;
+        }
+        table{
+                width: 30em;
+                height: 10em;
+                padding-left: 15em;
+                margin-left: 2cm;
+        }
+        tr{
+                width: 30em;
+                height: 5em;  
+        }
+        textarea{
+                font-family: Georgia;
+                background-color: WHITE;
+                text-decoration: #3333ff;
+                color: blue;
+        }
+        select{
+                font-family: Georgia;
+                background: WHITE;
+                color: blue;
+        }
+        h2{
+                margin-left: 2cm;
+        }
+        p{
+                margin-left: 2cm; 
+        }
+        
+       </style>
+    </head>
+    <body>
+        <center>
+            <form action="/UMS/JSP/register_courses.jsp" method="post">
+                <h2> Register Classes</h2>
+                <table>
+                    <tr>
+                        <td>
+                            Semester
+                        <td>
+                            <select name="term">
+                                <option value=None>None
+                                <option value=Summer>Summer 
+                                <option value=Fall>Fall 
+                                <option value=Spring>Spring 
+                            </select>
+                    </tr>
+                    <br/><br/>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Show courses">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </center>
+    </body>
+</html>
+
