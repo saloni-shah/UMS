@@ -35,9 +35,11 @@
          <a href="${pageContext.request.contextPath}/generateTimetable" class="btn btn-primary" role="button">Generate TimeTable</a>
          <a href="/UMS/JSP/tuition.jsp" class="btn btn-primary" role="button">Tuition & Costs</a>
          <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
+          <br /><br />
+         <a href="/UMS/JSP/adminHome.jsp" class="btn btn-primary" role="button">Admin Home</a>
          </div>
            <div align="right">
-        <a href="/UMS/HTML/login.html" class="btn btn-primary" role="button">LogOut</a>
+        <a href="/UMS/" class="btn btn-primary" role="button">LogOut</a>
         </div>
          <h1 align="center">Edit/Remove Course</h1>
         <!--<h3 align="left">

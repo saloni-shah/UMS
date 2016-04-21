@@ -30,6 +30,17 @@
     </head>
     <body>
         <!--<div align="left" style="color: white;">${Message}</div>-->
+        <div align="left">
+            <br />
+         <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
+         <a href="/UMS/JSP/tuition.jsp" class="btn btn-primary" role="button">Tuition & Costs</a>
+         <a href="/UMS/JSP/editRemove.jsp" class="btn btn-primary" role="button">Edit/Remove Course</a>
+         <br /><br />
+         <a href="/UMS/JSP/adminHome.jsp" class="btn btn-primary" role="button">Admin Home</a>
+         </div>
+         <div align="right">
+        <a href="/UMS/" class="btn btn-primary" role="button">LogOut</a>
+        </div>
         <h1 align="center">Timetable(Course List)</h1>
         <!--<h3 align="left">
             <a href="/UMS/JSP/addCourse.jsp" class="btn btn-primary" role="button">Add Course</a>
