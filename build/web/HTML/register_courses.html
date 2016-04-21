@@ -49,6 +49,7 @@ and open the template in the editor.
                 font-family: Georgia;         
                 alignment-adjust: central;
                 color: blue;
+                font-size: 1.5em;
         }
         div{
                 background-color: blue;
@@ -60,14 +61,17 @@ and open the template in the editor.
                 color: blue;
         }
         table{
-                width: 30em;
+                width: 20em;
                 height: 10em;
                 padding-left: 15em;
-                margin-left: 2cm;
+               margin-left: 2cm;
         }
         tr{
                 width: 30em;
                 height: 5em;  
+        }
+        td{
+            font-size: 1.5em;
         }
         textarea{
                 font-family: Georgia;
@@ -93,25 +97,25 @@ and open the template in the editor.
         <center>
             <form action="/UMS/JSP/register_courses.jsp" method="post">
                 <h2> Register Classes</h2>
+                <hr>
                 <table>
                     <tr>
                         <td>
-                            Semester
+                            Semester</td>
                         <td>
                             <select name="term">
                                 <option value=None>None
                                 <option value=Summer>Summer 
                                 <option value=Fall>Fall 
                                 <option value=Spring>Spring 
-                            </select>
-                    </tr>
-                    <br/><br/>
-                    <tr>
-                        <td>
-                            <input type="submit" value="Show courses">
-                        </td>
-                    </tr>
+                            </select></td>
+                    </tr>                     
                 </table>
+                    <br/><br/>
+                    
+                    <input type="submit" value="Show courses">
+                        
+                   
             </form>
         </center>
     </body>

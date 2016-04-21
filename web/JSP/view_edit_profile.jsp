@@ -92,6 +92,7 @@
         }
         h2{
             margin-left: 2cm;
+            color:white;
         }
         p{
            margin-left: 2cm; 
@@ -111,10 +112,10 @@
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String servername="localhost";  
             String serverport="1521";
-            String sid="sysdba";
+            String sid="xe";
             String url="jdbc:oracle:thin:@"+servername+":"+serverport+":"+sid;
-            String username="project";
-            String password="myproject";
+            String username="hr";
+            String password="hr";
             
             // Establish a connection
             Connection connection = DriverManager.getConnection(url,username,password);

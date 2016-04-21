@@ -78,7 +78,7 @@ public class Login extends HttpServlet {
             
             // Establish a connection
             Connection connection = null;
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:sysdba","project","myproject");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","hr","hr");
             
             if(userName.equalsIgnoreCase("")||userName==null || pwd.equalsIgnoreCase("")|| pwd==null ){
                 out.print("Data is mising. Please enter data into all fields.Please click <a href=/UMS/HTML/student_login.html>here</a> to continue..</h4>");
